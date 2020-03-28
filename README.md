@@ -13,5 +13,5 @@ https://github.com/aldomar-mc/Sistema-de-comedor-universitario/blob/master/files
 Una vez realizado lo anterior se debe proceder a importar los archivos jar al proyecto.
 
 # Contacto
-Email: aomc@outlook.es / Facebook: https://web.facebook.com/aldomar.mc/
+*Email: aomc@outlook.es / aomc06@gmail.com *Facebook: https://web.facebook.com/aldomar.mc/
 
