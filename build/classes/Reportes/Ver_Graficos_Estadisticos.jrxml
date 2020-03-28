@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ver_Comensales_Fecha" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="82370a5b-04c2-4470-8dde-852e889ff96a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cant" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Silva\\Documents\\NetBeansProjects\\System_Unasam\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fec" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM estadistica e;]]>
+	</queryString>
+	<field name="idestadistica" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="150" y="0" width="235" height="28" uuid="2b12af0b-2736-4f7a-9ef2-6477aad6e421"/>
+				<textElement textAlignment="Center">
+					<font size="18" isItalic="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Reporte Estadistico del Dia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch">
+			<staticText>
+				<reportElement x="71" y="0" width="39" height="15" uuid="4b151727-0c92-4664-8a51-47788980e0a9"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="0" width="110" height="15" uuid="eab1af2f-9523-4b7f-a3b0-604198c92192"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fec}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="669" splitType="Stretch">
+			<subreport>
+				<reportElement x="3" y="0" width="550" height="220" uuid="87aec934-e9f8-4295-ac75-d958a13a53c5"/>
+				<subreportParameter name="agcad">
+					<subreportParameterExpression><![CDATA[$F{turno}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Desayuno.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="3" y="220" width="550" height="220" uuid="1a32452f-0153-4e3e-a62e-946774b219b7"/>
+				<subreportParameter name="agcad">
+					<subreportParameterExpression><![CDATA[$F{turno}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Almuerzo.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="3" y="440" width="550" height="220" uuid="82bf707f-e08f-4c0f-a53f-4aa550a66a89"/>
+				<subreportParameter name="agcad">
+					<subreportParameterExpression><![CDATA[$F{turno}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Cena.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

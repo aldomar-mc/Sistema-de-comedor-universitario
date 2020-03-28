@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ver_Reporte_Alumno" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ae4c1a78-d59f-4284-bd0f-6782f04e56de">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dni" class="java.lang.String"/>
+	<parameter name="feci" class="java.lang.String"/>
+	<parameter name="fecf" class="java.lang.String"/>
+	<parameter name="tipo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM vta_faltas  where dni=$P{dni}  and fechaconsumo between $P{feci} and $P{fecf}  and turno like '%$P!{tipo}%' order by fechaconsumo asc;]]>
+	</queryString>
+	<field name="idconsumidores" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaconsumo" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descritipcom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codfacu" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cat" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="almu" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="153" y="0" width="224" height="20" uuid="177f4225-c20d-4431-a80d-ccf993122641"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Faltas del Comensal]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="37" y="13" width="87" height="15" uuid="8beefec1-a68a-42c5-826b-2bb1e73e6932"/>
+				<textElement>
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="28" width="87" height="15" uuid="3305ad13-1509-4f75-8d1f-2103008d7312"/>
+				<textElement>
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Dni]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="43" width="87" height="15" uuid="ea449a78-29de-4045-8d46-b1ec87dc2b69"/>
+				<textElement>
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Comensal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="13" width="297" height="15" uuid="4b9100ad-2a14-4eff-9185-9cd424d24eb8"/>
+				<textElement>
+					<font size="11" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="28" width="198" height="15" uuid="49212305-fa65-4675-a670-a81bfdc0bec5"/>
+				<textElement>
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="43" width="297" height="15" uuid="15e97825-622d-4048-971c-299b28b6f477"/>
+				<textElement>
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descritipcom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement x="37" y="0" width="74" height="15" uuid="0ec3e5dc-02cc-4adb-8687-9c6e0e763c63"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="111" y="0" width="126" height="15" uuid="3f42d42d-45ef-47a0-9728-525abc509875"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="237" y="0" width="130" height="15" uuid="af33d741-921c-41d7-9eb3-3bbe8947ea4a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="237" y="0" width="130" height="15" uuid="fd7330b6-8310-43e8-b086-5bd861ec0dd1"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Turno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="126" height="15" uuid="dbcc17e6-bc9e-440f-bbce-190da7da772e"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Consumo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="0" width="74" height="15" uuid="b3e6dad9-d6dc-4571-83cb-ef640ee3c357"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement x="37" y="0" width="74" height="15" uuid="e81517d3-a099-4b91-aba0-bc4e6fc352e2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="237" y="0" width="130" height="15" uuid="f44d3b57-5a90-448c-bb9f-bf019d758482"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="111" y="0" width="126" height="15" uuid="3a2f3253-34d4-4b68-967c-0f1be9c3cd03"/>
+			</rectangle>
+			<textField>
+				<reportElement x="237" y="0" width="124" height="15" uuid="bdfba259-593f-454d-9405-0a437e4900b3"/>
+				<textElement textAlignment="Center">
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="111" y="0" width="126" height="15" uuid="ab8f305a-1f89-4de0-a309-8b047e1a121c"/>
+				<textElement textAlignment="Center">
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaconsumo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="0" width="74" height="15" uuid="8cf9335f-a762-43dd-b062-22d08d10a4b6"/>
+				<textElement textAlignment="Center">
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

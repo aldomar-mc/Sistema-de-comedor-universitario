@@ -1,0 +1,2 @@
+crear una carpeta en el disco d 
+llamada "D:/fotos"

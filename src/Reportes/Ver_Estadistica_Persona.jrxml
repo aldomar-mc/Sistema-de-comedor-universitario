@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ver_Comensales_Fecha" language="groovy" pageWidth="595" pageHeight="311" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="82370a5b-04c2-4470-8dde-852e889ff96a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="agcad" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select (SELECT count(*)*3 FROM crono_comensale where dni=$P{agcad} and estadocrono<>2 and fechaconsumo<curdate())as tot,
+(SELECT count(*) FROM vat_asistencia v where dni=$P{agcad} and fecha <curdate()) as asi, dni, nombres,descritipcom,codfacu, 'Asistio' as est
+FROM vat_asistencia v where dni=$P{agcad} and fecha <curdate()
+ union
+select (SELECT count(*)*3  FROM crono_comensale where dni=$P{agcad} and estadocrono<>2 and fechaconsumo<curdate()),
+(select (SELECT count(*)*3 FROM crono_comensale where dni=$P{agcad} and estadocrono<>2 and fechaconsumo<curdate())-
+(SELECT count(*) FROM vat_asistencia v where dni=$P{agcad} and fecha <curdate())), dni, nombres,descritipcom,codfacu, 'No Asistio'
+FROM vat_asistencia v where dni=$P{agcad} and fecha <curdate();]]>
+	</queryString>
+	<field name="tot" class="java.lang.Long"/>
+	<field name="asi" class="java.lang.Long"/>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descritipcom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codfacu" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="est" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="67" y="2" width="130" height="17" uuid="5b6e0849-6980-4054-ac20-aa8b3e6a6544"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ Reporte Estadistico]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30">
+			<rectangle>
+				<reportElement x="67" y="0" width="88" height="15" uuid="da31f5d9-3143-4365-8432-77269f69a8b0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="155" y="0" width="64" height="15" uuid="69b4064d-9188-410b-b903-25dfdfa8bbf6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="67" y="0" width="88" height="15" uuid="2eabccf8-f981-485e-9f2c-5fbaa1675e48"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Comensal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="0" width="64" height="15" uuid="34809c59-bffa-46df-b54a-299ca1e0a059"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Dni]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="219" y="0" width="146" height="15" uuid="37678637-e86c-47e5-9bd4-58dc20f962d3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="219" y="0" width="133" height="15" uuid="b61dcac8-8a35-4136-8b74-8e6f65e5d12a"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nombre y Apellido]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="67" y="15" width="88" height="15" uuid="708c4bc5-a0c7-483b-b449-d5f896338b8b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="155" y="15" width="64" height="15" uuid="3ec2f231-1c9e-4966-9a85-baec7aa5965f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="219" y="15" width="146" height="15" uuid="ffdada85-1cba-4e40-b71d-0f9fe04e8a29"/>
+			</rectangle>
+			<textField>
+				<reportElement x="158" y="15" width="61" height="15" uuid="9b6ba631-2af8-45d1-baa2-7e82f66f2c32"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="15" width="122" height="15" uuid="db3524db-d3b4-4aef-a717-bd22862fbd06"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="16" width="77" height="14" uuid="5c7d1d7c-7963-4ba4-a9e0-0cc923d2ed9a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{descritipcom}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="352" y="0" width="53" height="15" uuid="c4be3526-c187-4d11-8d52-552f98c12496"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="352" y="15" width="53" height="15" uuid="d0a0f36b-0c26-47e4-b35b-da0f4ad8af79"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="405" y="15" width="70" height="15" uuid="dc59a3ed-8e63-42df-ba02-b8d507c644c1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="405" y="0" width="70" height="15" uuid="4513e185-5eee-41c8-9fb8-34f98045d741"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="352" y="0" width="53" height="15" uuid="09ab3f56-0236-4da7-8e97-4d436c6b25b7"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="0" width="70" height="15" uuid="af166336-2695-4e79-ad98-4e790a5e028d"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Asistencia]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="352" y="15" width="53" height="15" uuid="af633ec5-6d1a-4858-9adb-e8b6ec355a01"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="16" width="70" height="14" uuid="30526a25-bd4e-46eb-b8b3-472a0cdb8260"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{asi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<summary>
+		<band height="159" splitType="Stretch">
+			<rectangle>
+				<reportElement x="67" y="0" width="408" height="156" uuid="731a6bbb-5954-4e0e-88c9-0ff1ed90060e"/>
+			</rectangle>
+			<pieChart>
+				<chart>
+					<reportElement x="67" y="0" width="408" height="156" uuid="c7543be4-1e4c-4da7-bcfb-bb8ee34ae2e4"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{est}]]></keyExpression>
+					<valueExpression><![CDATA[$F{asi}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>
